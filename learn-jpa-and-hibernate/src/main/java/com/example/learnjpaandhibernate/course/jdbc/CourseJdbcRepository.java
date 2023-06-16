@@ -1,5 +1,6 @@
 package com.example.learnjpaandhibernate.course.jdbc;
 
+import com.example.learnjpaandhibernate.course.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -12,10 +13,10 @@ public class CourseJdbcRepository {
     private static String INSERT_QUERY =
             """
                     INSERT INTO course (id, name, author)
-                    VALUES(1, 'Learn AWS', 'Amazon AWS');
+                    VALUES(?, ?,?);
                     
             """;
-    public void insertQuery(){
-        springJdbcTemplate.update(INSERT_QUERY);
+    public void insertQuery(Course course){
+        springJdbcTemplate.update(INSERT_QUERY, course.getId(), course.getName(), course.getAuthor());
     }
 }
