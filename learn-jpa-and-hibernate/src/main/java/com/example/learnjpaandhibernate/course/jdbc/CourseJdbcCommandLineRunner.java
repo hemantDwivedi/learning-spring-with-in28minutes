@@ -16,5 +16,6 @@ public class CourseJdbcCommandLineRunner implements CommandLineRunner {
         repository.insertQuery(new Course(1, "Spring Boot", "Spring Doc"));
         repository.insertQuery(new Course(2, "DevOps", "xyz"));
         repository.insertQuery(new Course(3, "AWS", "xyz2"));
+        repository.deleteQuery(2);
     }
 }
