@@ -33,9 +33,4 @@ public class HelloController {
     public String helloJsp(){
         return "sayHelloJsp";
     }
-
-    @RequestMapping("login")
-    public String login(){
-        return "login";
-    }
 }
