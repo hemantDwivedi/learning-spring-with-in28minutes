@@ -3,7 +3,7 @@
 <title>List todos - page</title>
 </head>
 <body>
-<h1>Welcome to todos page</h1>
+<h1>Welcome ${name}</h1>
 <div>
 todos : ${todos}
 </div>
