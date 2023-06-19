@@ -1,23 +1,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <head>
 <link href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" >
-<title>List todos - page</title>
+<title>Add todos - page</title>
 </head>
 <body>
 <div class="container p-4">
 
 <h1>Todo Details</h1>
 
-<form method="post">
+<form:form method="post" modelAttribute="todo">
 
  <label for="description" class="form-label">Description</label>
-  <input type="text" class="form-control" id="description" name="description">
+  <form:input type="text" class="form-control" id="description"  path="description"  required="required" />
+ <label for="done" class="form-label">Done</label>
+  <form:input type="text" class="form-control" id="done"  path="done" />
 
   <input type="submit" class="btn btn-success mt-2" />
 
-</form>
+</form:form>
 
 </div>
 
