@@ -13,7 +13,7 @@
 <form method="post">
 
  <label for="description" class="form-label">Description</label>
-  <input type="text" class="form-control" id="description">
+  <input type="text" class="form-control" id="description" name="description">
 
   <input type="submit" class="btn btn-success mt-2" />
 
