@@ -6,16 +6,18 @@
 <title>List todos - page</title>
 </head>
 <body>
+<div class="container">
 <h1>Welcome ${name}</h1>
 <div>
 
-<table>
+<table class="table">
 <thead>
 <tr>
 <th>id</th>
 <th>description</th>
 <th>target date</th>
 <th>Done</th>
+<th>Actions</th>
 </tr>
 </thead>
 <tbody>
@@ -25,11 +27,16 @@
 <td>${todo.description}</td>
 <td>${todo.targetDate}</td>
 <td>${todo.done}</td>
+<td>
+<button class="btn btn-success">Update</button>
+<button class="btn btn-danger">Delete</button>
+</td>
 </tr>
 </c:forEach>
 </tbody>
 </table>
-
+<a href="add-todo" class="btn btn-dark">Add</a>
+</div>
 </div>
 
 
