@@ -1,5 +1,6 @@
 package com.example.springboot.todomanagement.todo;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -23,7 +24,7 @@ public class TodoService {
         todos.add(new Todo(
                 ++todosCount,
                 "Sam",
-                "Learn AWS",
+                "Learn AWS in 30 Days",
                 LocalDate.now().plusYears(2),
                 false
         ));
@@ -54,5 +55,18 @@ public class TodoService {
     public void deleteById(int id) {
         Predicate<? super Todo> predicate = todo -> todo.getId() == id;
         todos.removeIf(predicate);
+    }
+
+    public Todo findById(int id) {
+        Predicate<? super Todo> predicate = todo -> todo.getId() == id;
+        return todos
+                .stream()
+                .filter(predicate)
+                .findFirst().get();
+    }
+
+    public void updateTodo(@Valid Todo todo) {
+        deleteById(todo.getId());
+        todos.add(todo);
     }
 }

@@ -6,7 +6,7 @@
 <title>List todos - page</title>
 </head>
 <body>
-<div class="container">
+<div class="container p-5">
 <h1>Welcome ${name}</h1>
 <div>
 
