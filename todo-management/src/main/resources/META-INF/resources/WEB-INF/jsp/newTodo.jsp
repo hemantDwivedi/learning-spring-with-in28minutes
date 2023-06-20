@@ -14,9 +14,12 @@
 <form:form method="post" modelAttribute="todo">
 
  <label for="description" class="form-label">Description</label>
+
   <form:input type="text" class="form-control" id="description"  path="description"  required="required" />
- <label for="done" class="form-label">Done</label>
-  <form:input type="text" class="form-control" id="done"  path="done" />
+
+ <form:errors path="description" cssClass="text-warning" />
+
+  <form:input type="hidden" class="form-control" id="done"  path="done" />
 
   <input type="submit" class="btn btn-success mt-2" />
 

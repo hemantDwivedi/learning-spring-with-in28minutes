@@ -1,10 +1,13 @@
 package com.example.springboot.todomanagement.todo;
 
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 public class Todo {
     private int id;
     private String username;
+    @Size(min = 10, message = "character must be 10")
     private String description;
     private LocalDate targetDate;
     private boolean done;
