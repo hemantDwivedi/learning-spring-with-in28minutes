@@ -41,7 +41,7 @@ public class TodoService {
         return todos;
     }
 
-    public void addTodo(String username, String description, LocalDate targetDate, boolean done){
+    public void addNewTodo(String username, String description, LocalDate targetDate, boolean done){
         Todo todo = new Todo(
           ++todosCount,
           username,
@@ -65,7 +65,7 @@ public class TodoService {
                 .findFirst().get();
     }
 
-    public void updateTodo(@Valid Todo todo) {
+    public void updateTodo(Todo todo) {
         deleteById(todo.getId());
         todos.add(todo);
     }

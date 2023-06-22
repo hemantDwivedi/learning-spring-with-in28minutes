@@ -18,7 +18,8 @@ public class TodoController {
     public TodoController(TodoService todoService) {
         this.todoService = todoService;
     }
-    private TodoService todoService;
+    private final TodoService todoService;
+
 
     @RequestMapping("list-todos")
     public String todosPage(ModelMap model){
@@ -28,13 +29,13 @@ public class TodoController {
     }
 
     @RequestMapping(value = "add-todo", method = RequestMethod.GET)
-    public String showTodoPage(ModelMap model){
+    public String showNewTodoPage(ModelMap model){
         String username = (String) model.get("name");
         Todo todo = new Todo(
                 0,
                 username,
                 "",
-                LocalDate.now().plusYears(2),
+                LocalDate.now(),
                 false
         );
 
@@ -43,15 +44,16 @@ public class TodoController {
     }
 
     @RequestMapping(value = "add-todo", method = RequestMethod.POST)
-    public String addTodo(ModelMap model,
+    public String addNewTodo(ModelMap model,
                           @Valid Todo todo,
                           BindingResult result){
 
         if (result.hasErrors()){
             return "todo";
         }
-        String username = (String) model.get("name");
-        todoService.addTodo(username, todo.getDescription(), LocalDate.now().plusYears(1), false);
+        String username = (String)model.get("name");
+        todoService.addNewTodo(username, todo.getDescription(), todo.getTargetDate(), false);
+
         return "redirect:list-todos";
     }
 
