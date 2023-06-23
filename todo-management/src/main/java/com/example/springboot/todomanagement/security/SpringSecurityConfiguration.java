@@ -59,9 +59,7 @@ public class SpringSecurityConfiguration {
                 .authorizeHttpRequests(
                         authorization -> authorization.anyRequest().authenticated()
                 )
-                .formLogin(Customizer.withDefaults()); // enable form login, all defaults that are associated with form login
-
-        http
+                .formLogin(Customizer.withDefaults()) // enable form login, all defaults that are associated with form login
                 .csrf(AbstractHttpConfigurer::disable)
                 .headers(
                         headers ->
