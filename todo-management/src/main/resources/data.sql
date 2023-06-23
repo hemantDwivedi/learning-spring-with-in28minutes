@@ -2,10 +2,10 @@ INSERT INTO todo (ID, USERNAME, DESCRIPTION, TARGET_DATE, DONE)
 VALUES(1000, 'hemant', 'Learning microservices', CURRENT_DATE, false);
 
 INSERT INTO todo (ID, USERNAME, DESCRIPTION, TARGET_DATE, DONE)
-VALUES(1001, 'Krishna', 'Learning spring boot 3', CURRENT_DATE, false);
+VALUES(1001, 'hemant', 'Learning spring boot 3', CURRENT_DATE, false);
 
 INSERT INTO todo (ID, USERNAME, DESCRIPTION, TARGET_DATE, DONE)
-VALUES(1002, 'KK', 'Learn DevOps', CURRENT_DATE, false);
+VALUES(1002, 'hemant', 'Learn DevOps', CURRENT_DATE, false);
 
 INSERT INTO todo (ID, USERNAME, DESCRIPTION, TARGET_DATE, DONE)
-VALUES(1003, 'in28mintues', 'Learn spring 6 and spring boot 3', CURRENT_DATE, false);
+VALUES(1003, 'hemant', 'Learn spring 6 and spring boot 3', CURRENT_DATE, false);
