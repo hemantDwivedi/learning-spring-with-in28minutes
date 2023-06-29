@@ -14,26 +14,26 @@ import java.util.List;
 public class FilteringController {
 
     @GetMapping("/filtering")
-    public MappingJacksonValue filtering(){
+    public MappingJacksonValue filtering() {
         SomeBean someBean = new SomeBean("value1", "value2", "value3");
-        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(someBean);
-        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1", "field3");
-        FilterProvider filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
-        mappingJacksonValue.setFilters(filters);
-        return mappingJacksonValue;
+        return getMappingJacksonValue(new MappingJacksonValue(someBean), "field1");
     }
 
+
     @GetMapping("/filtering-list")
-    public MappingJacksonValue filteringList(){
+    public MappingJacksonValue filteringList() {
         List<SomeBean> someBeans = Arrays.asList(
                 new SomeBean("value1", "value2", "value3"),
                 new SomeBean("value4", "value5", "value6"),
                 new SomeBean("value7", "value8", "value9")
         );
-        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(someBeans);
-        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field2", "field3");
+        return getMappingJacksonValue(new MappingJacksonValue(someBeans), "field2");
+    }
+
+    private static MappingJacksonValue getMappingJacksonValue(MappingJacksonValue someBean, String field) {
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept(field, "field3");
         FilterProvider filters = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter);
-        mappingJacksonValue.setFilters(filters);
-        return mappingJacksonValue;
+        someBean.setFilters(filters);
+        return someBean;
     }
 }
