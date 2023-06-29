@@ -10,7 +10,7 @@ VALUES(103, current_date(), 'Josh');
 INSERT INTO post(id, description, user_id)
 VALUES(10001, 'learn devops', 100);
 INSERT INTO post(id, description, user_id)
-VALUES(10002, 'learn spring boot 3', 101);
+VALUES(10002, 'learn spring boot 3', 100);
 INSERT INTO post(id, description, user_id)
 VALUES(10003, 'learn microservices', 102);
 INSERT INTO post(id, description, user_id)
