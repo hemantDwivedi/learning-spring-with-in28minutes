@@ -15,17 +15,21 @@ public class User {
     @GeneratedValue
     private Integer id;
     @Size(min = 2, message = "name should be at least two characters")
-    @JsonProperty("user_name")
+//    @JsonProperty("user_name")
     private String name;
     @Past(message = "Date of Birth should be in past")
-    @JsonProperty("birth_date")
+//    @JsonProperty("birth_date")
     private LocalDate birthDate;
+
+    public User() {
+    }
 
     public User(Integer id, String name, LocalDate birthDate) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
     }
+
     public Integer getId() {
         return id;
     }
