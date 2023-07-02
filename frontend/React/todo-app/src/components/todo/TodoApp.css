@@ -3,15 +3,11 @@ label, input, button{
     padding: 5px;
 }
 
-table{
-    width: 50%;
-    margin: auto;
-    border: solid 2px;
-}
-
-td{
-    border: solid 2px;
-    padding: 5px;
+footer{
+    bottom: 0;
+    position: absolute;
+    width: 90%;
+    height: 50px;
 }
 
 .errorMessage{
