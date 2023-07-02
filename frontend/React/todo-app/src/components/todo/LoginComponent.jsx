@@ -1,13 +1,14 @@
 import {useNavigate} from 'react-router-dom'
 import { useState } from 'react'
+import { useAuth } from './security/AuthContext'
 
 function LoginComponent() {
 
     const [username, setUser] = useState('hemant')
     const [password, setPassword] = useState('')
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false)
     const [showErrorMessage, setShowErrorMessage] = useState(false)
     const navigate = useNavigate();
+    const authContext = useAuth()
 
     function handleUsernameChange(event) {
         setUser(event.target.value)
@@ -21,13 +22,10 @@ function LoginComponent() {
 
 
     function handleSubmit() {
-        if (username === 'hemant' && password === '12345') {
-            setShowSuccessMessage(true)
-            setShowErrorMessage(false)
+        if (authContext.login(username, password)) {
             navigate(`/welcome/${username}`)
         }
         else {
-            setShowSuccessMessage(false)
             setShowErrorMessage(true)
             navigate('/login')
         }
@@ -35,7 +33,6 @@ function LoginComponent() {
 
     return (
         <div className="Login">
-            {showSuccessMessage && <div className="successMessage">Authenticated Successfully</div>}
             {showErrorMessage && <div className="errorMessage">Authenticated Failed. Please check your credentials</div>}
             <h1>Login Page</h1>
             <div className="LoginForm">
@@ -48,7 +45,7 @@ function LoginComponent() {
                     <input type="password" name="password" value={password} onChange={handlePasswordChange} />
                 </div>
                 <div>
-                    <button type="button" name="login" onClick={handleSubmit}>Login</button>
+                    <button className='btn btn-success' type="button" name="login" onClick={handleSubmit}>Login</button>
                 </div>
             </div>
         </div>
