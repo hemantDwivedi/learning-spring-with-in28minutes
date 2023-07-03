@@ -16,7 +16,6 @@ function LoginComponent() {
 
 
     function handlePasswordChange(event) {
-        console.log(event.target.value)
         setPassword(event.target.value)
     }
 

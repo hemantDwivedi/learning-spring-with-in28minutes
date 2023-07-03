@@ -1,26 +1,44 @@
+import { useEffect, useState } from "react"
+import { deleteTodoApi, retrieveAllTodosForUserApi } from "./api/TodoApiService"
+
 function ListTodosComponent() {
 
+    const [todos, setTodos] = useState([])
+    const [message, setMessage] = useState(null)
 
-    const today = new Date();
-    const targetDate = new Date(today.getFullYear() + 12, today.getMonth(), today.getDay())
+    useEffect(() => refreshTodos(), [])
 
-    const todos = [
-        { id: 1, description: 'Learn DevOps', done: false, targetDate: targetDate },
-        { id: 2, description: 'Learn Microservices', done: false, targetDate: targetDate },
-        { id: 3, description: 'Learn AWS', done: false, targetDate: targetDate }
-    ]
+    function refreshTodos() {
+        retrieveAllTodosForUserApi('in28minutes')
+            .then(response => {
+                setTodos(response.data)
+            }
+            )
+            .catch(error => console.log(error))
+    }
+
+    function deleteTodo(id) {
+        deleteTodoApi('in28minutes', id)
+        .then (
+            () => {
+                setMessage(`Delete of todo with id ${id} successful`)
+                refreshTodos()
+            }
+        )
+        .catch ( error => console.log(error))
+    }
 
     return (
         <div className="container">
             <h1>THINGS TO DO</h1>
+            {message && <div className="alert alert-warning">{message}</div>}
             <div>
                 <table className="table">
                     <thead>
                         <tr>
-                            <td>ID</td>
-                            <td>DESCRIPTION</td>
-                            <td>IS DONE</td>
-                            <td>TARGET DATE</td>
+                            <th>DESCRIPTION</th>
+                            <th>IS DONE</th>
+                            <th>TARGET DATE</th>
                         </tr>
                     </thead>
 
@@ -29,16 +47,17 @@ function ListTodosComponent() {
                             todos.map(todo => (
                                 <tr key={todo.id}>
                                     <td>
-                                        {todo.id}
-                                    </td>
-                                    <td>
                                         {todo.description}
                                     </td>
                                     <td>
                                         {todo.done.toString()}
                                     </td>
                                     <td>
-                                        {todo.targetDate.toDateString()}
+                                        {/* {todo.targetDate.toDateString()} */}
+                                        {todo.targetDate.toString()}
+                                    </td>
+                                    <td>
+                                        <button className="btn btn-danger" onClick={() => deleteTodo(todo.id)}>Delete</button>
                                     </td>
                                 </tr>
                             ))
