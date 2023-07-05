@@ -33,10 +33,6 @@ function WelcomeComponent() {
             <div>
                 Manage Your Todos <Link to="/todos">Go here</Link>
             </div>
-            <div>
-                <button className='btn btn-danger' onClick={callHelloWorldApi}>Hello World</button>
-            </div>
-            <div className='text-info' >{message}</div>
         </div>
     )
 }

@@ -1,8 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { retrieveTodoApi, updateTodoApi } from "./api/TodoApiService"
+import { createTodoApi, retrieveTodoApi, updateTodoApi } from "./api/TodoApiService"
 import { useAuth } from "./security/AuthContext"
 import { useEffect, useState } from "react"
 import { Formik, Form, Field, ErrorMessage } from 'formik'
+import moment from "moment/moment"
 
 function TodoComponent() {
 
@@ -19,12 +20,16 @@ function TodoComponent() {
     )
 
     function retrieveTodo() {
-        retrieveTodoApi(username, id)
-            .then(response => {
-                setDescription(response.data.description)
-                setTargetDate(response.data.targetDate)
-            })
-            .catch(error => console.log(error))
+
+        if (id != -1){
+            retrieveTodoApi(username, id)
+                .then(response => {
+                    setDescription(response.data.description)
+                    setTargetDate(response.data.targetDate)
+                })
+                .catch(error => console.log(error))
+        }
+
     }
 
     function onSubmit(values) {
@@ -35,6 +40,16 @@ function TodoComponent() {
             description: values.description,
             targetDate: values.targetDate,
             done: false
+        }
+
+        if(id == -1){
+            createTodoApi(username, todo)
+            .then (
+                navigate('/todos')
+            )
+            .catch (
+                errors => console.log(errors)
+            )
         }
 
         updateTodoApi(username, id, todo)
@@ -53,8 +68,8 @@ function TodoComponent() {
             errors.description = 'Enter atleast five characters'
         }
 
-        if (values.targetDate == null) {
-            errors.targetDate = 'enter a target date'
+        if (values.targetDate == null || values.targetDate == '' || moment(values.targetDate).isValid()) {
+            errors.targetDate = 'Enter a target date'
         }
         return errors
     }
