@@ -14,7 +14,7 @@ function ListTodosComponent() {
     useEffect(() => refreshTodos(), [])
 
     function refreshTodos() {
-        retrieveAllTodosForUsernameApi(username)
+        retrieveAllTodosForUsernameApi(username, authContext.token)
             .then(response => {
                 setTodos(response.data)
             }
